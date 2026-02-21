@@ -1,50 +1,153 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+Sync Impact Report:
+- Version Change: [초기 작성] → 1.0.0
+- Modified Principles: 없음 (신규 작성)
+- Added Sections: 모든 섹션 신규 작성
+- Removed Sections: 없음
+- Templates Requiring Updates:
+  ✅ .specify/templates/plan-template.md (Constitution Check 섹션 확인 완료)
+  ✅ .specify/templates/spec-template.md (요구사항 정렬 확인 완료)
+  ✅ .specify/templates/tasks-template.md (작업 분류 확인 완료)
+- Follow-up TODOs: 없음
+-->
 
-## Core Principles
+# Expo Demo 프로젝트 헌법
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+## 핵심 원칙
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### I. 테스트 우선 개발 (TDD) - 필수 원칙
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+**원칙 내용**:
+- 모든 기능 구현은 반드시 테스트 작성으로 시작해야 합니다
+- 테스트 작성 → 사용자 승인 → 테스트 실패 확인 → 구현의 순서를 엄격히 준수합니다
+- Red-Green-Refactor 사이클을 따라야 합니다
+- 테스트가 없는 코드는 병합할 수 없습니다
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+**근거**:
+테스트 우선 개발은 코드 품질을 보장하고, 리팩토링 시 안전성을 제공하며, 문서화 역할을 수행합니다. 특히 모바일 앱 개발에서는 다양한 기기와 시나리오에서의 동작을 검증하는 것이 필수적입니다.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### II. 컴포넌트 기반 개발
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+**원칙 내용**:
+- 모든 UI 요소는 재사용 가능한 컴포넌트로 작성되어야 합니다
+- 컴포넌트는 독립적으로 테스트 가능해야 합니다
+- 각 컴포넌트는 명확한 단일 책임을 가져야 합니다
+- 컴포넌트는 props를 통해 외부와 통신하며, 내부 상태는 최소화합니다
+- 공통 컴포넌트는 별도의 디렉토리에서 관리합니다
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+**근거**:
+React Native/Expo 앱 개발에서 컴포넌트 기반 접근은 코드 재사용성, 유지보수성, 테스트 용이성을 극대화합니다. 또한 팀원 간 협업 시 명확한 경계를 제공합니다.
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+### III. 단순성 우선 (YAGNI)
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+**원칙 내용**:
+- "지금 필요하지 않으면 구현하지 않는다" (You Aren't Gonna Need It) 원칙을 따릅니다
+- 과도한 추상화를 피하고, 필요한 시점에만 추상화를 도입합니다
+- 세 번째 반복에서 패턴이 명확해질 때 추상화를 고려합니다
+- 불필요한 설정, 옵션, 기능을 추가하지 않습니다
+- 코드는 읽기 쉽고 이해하기 쉬워야 합니다
 
-## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
+**근거**:
+단순한 코드는 버그가 적고, 유지보수가 쉬우며, 새로운 팀원의 온보딩이 빠릅니다. 모바일 앱에서는 번들 크기와 성능에도 직접적인 영향을 미칩니다.
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+### IV. 문서화 필수
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**원칙 내용**:
+- 모든 공개 API와 컴포넌트는 JSDoc 주석을 포함해야 합니다
+- README.md는 항상 최신 상태를 유지해야 합니다
+- 복잡한 비즈니스 로직은 주석으로 설명해야 합니다
+- 설정 변경 사항은 문서에 반영되어야 합니다
+- 각 기능 스펙은 `.specify/` 디렉토리에서 관리됩니다
+
+**근거**:
+문서화는 코드의 의도를 명확히 하고, 팀원 간 지식 공유를 원활하게 하며, 미래의 자신과 타인을 위한 투자입니다.
+
+### V. 크로스 플랫폼 호환성
+
+**원칙 내용**:
+- 코드는 iOS와 Android 양쪽에서 동작해야 합니다
+- 플랫폼 특정 코드는 명확히 분리하고 문서화합니다
+- Platform.OS를 사용하여 플랫폼별 로직을 처리합니다
+- 공통 로직을 최대화하고 플랫폼별 코드를 최소화합니다
+- 양쪽 플랫폼에서 테스트를 실행해야 합니다
+
+**근거**:
+Expo의 주요 장점은 크로스 플랫폼 개발입니다. 이 원칙을 통해 개발 효율성을 극대화하고 유지보수 비용을 최소화합니다.
+
+## 품질 기준
+
+### 성능 요구사항
+
+- 앱 시작 시간: 3초 이내 (첫 화면 표시)
+- 화면 전환: 부드러운 60 FPS 유지
+- 메모리 사용: 합리적인 수준 유지 (디바이스별 제한 고려)
+- 번들 크기: 필요한 최소한으로 유지
+
+### 접근성 요구사항
+
+- 모든 상호작용 요소는 접근성 레이블을 포함해야 합니다
+- 색상만으로 정보를 전달하지 않습니다
+- 텍스트는 충분한 대비를 가져야 합니다
+- 스크린 리더 지원을 고려합니다
+
+### 보안 요구사항
+
+- 민감한 데이터는 안전하게 저장합니다 (AsyncStorage 사용 시 주의)
+- API 키와 비밀 정보는 환경 변수로 관리합니다
+- 사용자 입력은 항상 검증합니다
+- HTTPS 통신을 사용합니다
+
+## 개발 워크플로우
+
+### 브랜치 전략
+
+- `master`: 프로덕션 준비 코드
+- `feature/###-feature-name`: 기능 개발 브랜치
+- 모든 변경사항은 Pull Request를 통해 병합됩니다
+
+### 코드 리뷰
+
+- 모든 PR은 최소 1명의 승인이 필요합니다
+- 리뷰어는 헌법 준수 여부를 확인합니다
+- 테스트 통과가 병합 조건입니다
+- 린팅과 포맷팅 규칙을 준수해야 합니다
+
+### 커밋 메시지
+
+- 명확하고 설명적인 커밋 메시지를 작성합니다
+- Conventional Commits 형식을 권장합니다
+  - `feat:` 새로운 기능
+  - `fix:` 버그 수정
+  - `docs:` 문서 변경
+  - `refactor:` 리팩토링
+  - `test:` 테스트 추가/수정
+  - `chore:` 빌드/설정 변경
+
+## 거버넌스
+
+### 헌법의 우선순위
+
+- 이 헌법은 모든 개발 관행보다 우선합니다
+- 헌법과 충돌하는 코드는 리뷰에서 거부됩니다
+- 불확실한 경우 헌법의 원칙으로 돌아가 판단합니다
+
+### 헌법 수정 절차
+
+- 헌법 수정은 팀 전체의 동의가 필요합니다
+- 수정 제안은 문서화되어야 하며, 영향 분석을 포함해야 합니다
+- 수정 시 버전을 업데이트하고 변경 이력을 기록합니다
+- 수정 사항은 모든 관련 템플릿과 문서에 반영되어야 합니다
+
+### 준수 검토
+
+- 모든 PR 리뷰 시 헌법 준수를 확인합니다
+- 복잡도 증가는 반드시 정당화되어야 합니다
+- 원칙 위반은 명시적으로 문서화하고 승인받아야 합니다
+
+### 런타임 개발 가이드
+
+- 실시간 개발 지침은 `.specify/` 디렉토리의 템플릿을 참조합니다
+- 각 기능 개발 시 `/speckit` 명령어를 활용합니다
+- 의문사항은 팀과 논의하여 해결합니다
+
+**Version**: 1.0.0 | **Ratified**: 2026-02-21 | **Last Amended**: 2026-02-21
