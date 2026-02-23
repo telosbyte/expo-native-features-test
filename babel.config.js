@@ -20,7 +20,6 @@ module.exports = function (api) {
             '@/screens': './src/screens',
             '@/components': './src/components',
             '@/constants': './constants',
-            '@': './',
           },
           extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
         },
