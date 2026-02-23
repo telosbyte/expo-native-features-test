@@ -62,7 +62,6 @@
           "locationAlwaysAndWhenInUsePermission": "This app requires location access to track GPS coordinates"
         }
       ],
-      "expo-barcode-scanner",
       "expo-sqlite"
     ],
     "experiments": {
